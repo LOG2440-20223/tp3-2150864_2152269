@@ -51,6 +51,7 @@ describe("StorageManager tests", () => {
 
   it("loadDataFromFile should load data if data is not already contained in localStorage", () => {
     // TODO
+    
   });
 
   it("getData should not get localStorage's data given an invalid storageKey", () => {

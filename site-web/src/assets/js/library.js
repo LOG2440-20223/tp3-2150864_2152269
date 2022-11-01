@@ -118,7 +118,17 @@ export class Library {
    * @returns {boolean} true si au moins 1 élément dans 'searchFields' contient 'searchValue', false sinon
    */
   searchInFields (searchFields, searchValue, exactMatch) {
-    return false;
+
+    let isValueInside = false;
+    const originalValue = exactMatch ? searchValue : searchValue.toLowerCase();
+    
+
+    searchFields.forEach((string) => {
+      if (this.includesSubstring(string, originalValue, exactMatch))
+        isValueInside = true;
+    })
+
+    return isValueInside;
   }
 
   /**
