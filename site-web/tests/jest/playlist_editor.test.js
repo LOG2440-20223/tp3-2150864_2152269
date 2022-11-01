@@ -37,7 +37,7 @@ describe("Playlist Editor tests", () => {
     imageInput.setAttribute("id", "image");
     document.body.appendChild(imageInput);
 
-    // TODO : compléter la configuration du HTML pour l'élément dataList et le bouton d'ajout de chanson
+    // TODO  : compléter la configuration du HTML pour l'élément dataList et le bouton d'ajout de chanson
   };
 
   beforeEach(() => {
