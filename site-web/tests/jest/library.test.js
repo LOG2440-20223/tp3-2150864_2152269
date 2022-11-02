@@ -86,7 +86,19 @@ describe("Library tests", () => {
   });
 
   it("buildSongItem should build song's item", () => {
-    // TODO
+    // TODO DONE
+    const song = {
+      name: "Whip",
+      artist: "prazkhanal",
+      genre: "Electronic",
+      liked: false
+    };
+    const songItem = library.buildSongItem(song);
+    expect(songItem.hasChildNodes()).toEqual(true);
+    expect(songItem.innerHTML).toEqual(
+      `<p>${song.name}</p><p>${song.genre}</p><p>${song.artist}</p><button class="fa-heart fa-2x fa-regular"></button>`
+    )
+
   });
 
   it("buildSongItem should add a call to StorageManager.replaceItem on click event and change the classList", () => {
