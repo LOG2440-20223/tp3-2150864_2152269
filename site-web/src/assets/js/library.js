@@ -110,7 +110,7 @@ export class Library {
   }
 
   /**
-   * TODO
+   * TODO DONE
    * Vérifie si au moins 1 des éléments dans 'searchFields' contient la chaîne 'searchValue'
    * @param {Array<string>} searchFields tableau de 'string' dans lequel on cherche la présence de 'searchValue'
    * @param {string} searchValue la chaîne à trouver dans les champs
@@ -121,18 +121,17 @@ export class Library {
 
     let isValueInside = false;
     const originalValue = exactMatch ? searchValue : searchValue.toLowerCase();
-    
 
     searchFields.forEach((string) => {
       if (this.includesSubstring(string, originalValue, exactMatch))
         isValueInside = true;
     })
-
+    
     return isValueInside;
   }
 
   /**
-   * TODO
+   * TODO DONE
    * Effectue une recherche parmis les playlists et chansons disponibles dans l'objet 'searchSources'
    * Met à jour la page avec les éléments qui correspondent à la recherche
    * @param {HTMLInputElement} searchInput élément <input> qui représente la barre de recherche

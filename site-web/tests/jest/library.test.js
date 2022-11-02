@@ -7,7 +7,7 @@ describe("Library tests", () => {
   let library;
 
   const setUpHTML = () => {
-    // TODO : compléter la configuration du HTML pour les conteneurs de Playlists et Chansons
+    // TODO : compléter la configuration du HTML pour les conteneurs de Playlists et Chansons DONE
     const searchBar = document.createElement("input");
     searchBar.setAttribute("id", "search-input");
     document.body.appendChild(searchBar);
@@ -52,13 +52,28 @@ describe("Library tests", () => {
   });
 
   it("generateLists should call buildPlaylistItem and buildSongItem, and append children to containers", () => {
-    // TODO
+    // TODO  DONE
+    
     const buildPlaylistItemSpy = jest.spyOn(library, "buildPlaylistItem").mockImplementation(() => {
       return document.createElement("a");
     });
     const buildSongItemSpy = jest.spyOn(library, "buildSongItem").mockImplementation(() => {
       return document.createElement("div");
     });
+    
+    library.load();
+
+    const playlistContainer = document.getElementById("playlist-container");
+    const songContainer = document.getElementById("song-container");
+
+    expect(buildPlaylistItemSpy).toBeCalled();
+    expect(buildSongItemSpy).toBeCalled();
+    expect(playlistContainer.hasChildNodes()).toEqual(true);
+    expect(songContainer.hasChildNodes()).toEqual(true);
+
+
+    
+
   });
 
   it("buildPlaylistItem should build playlist's item", () => {
