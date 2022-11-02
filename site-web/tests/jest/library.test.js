@@ -8,11 +8,10 @@ describe("Library tests", () => {
 
   const setUpHTML = () => {
     // TODO : compléter la configuration du HTML pour les conteneurs de Playlists et Chansons
-
     const searchBar = document.createElement("input");
     searchBar.setAttribute("id", "search-input");
     document.body.appendChild(searchBar);
-
+    
     const searchButton = document.createElement("button");
     searchButton.setAttribute("id", "search-btn");
     document.body.appendChild(searchButton);
@@ -20,10 +19,18 @@ describe("Library tests", () => {
     const specificSearchInput = document.createElement("input");
     specificSearchInput.setAttribute("id", "exact-search");
     document.body.appendChild(specificSearchInput);
-
+    
     const clearSearch = document.createElement("i");
     clearSearch.setAttribute("id", "clear-search-bar");
     document.body.appendChild(clearSearch);
+
+    const playlistContainer = document.createElement("section");
+    playlistContainer.setAttribute("id", "playlist-container");
+    document.body.appendChild(playlistContainer);
+
+    const songContainer = document.createElement("section");
+    songContainer.setAttribute("id", "song-container");
+    document.body.appendChild(songContainer);
   };
 
   beforeEach(() => {
