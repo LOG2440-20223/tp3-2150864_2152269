@@ -141,10 +141,30 @@ export class Library {
    * @param {boolean} exactMatch indique s'il faut tenir compte des minuscules et majuscules
    */
   search (searchInput, searchSources, exactMatch) {
-    this.generateLists({}, {});
+
+    const songsToUpload =[];
+    const playlistsToLoad =[];
+
+    searchSources.playlists.forEach((playlist) => {
+      const playlistSearchingArray = [playlist.name, playlist.description];
+      if(this.searchInFields(playlistSearchingArray, searchInput.value, exactMatch))
+        playlistsToLoad.push(playlist);
+    } )
+
+    searchSources.songs.forEach((song) => {
+      const songSearchingArray = [song.name, song.artist, song.genre];
+      if(this.searchInFields(songSearchingArray, searchInput.value, exactMatch))
+      songsToUpload.push(song);
+    } )
+
+
+
+    this.generateLists(playlistsToLoad, songsToUpload);
+
   }
 }
 
 window.onload = () => {
   new Library(new StorageManager()).load();
+
 };
