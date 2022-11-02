@@ -31,6 +31,7 @@ describe("Library tests", () => {
     const songContainer = document.createElement("section");
     songContainer.setAttribute("id", "song-container");
     document.body.appendChild(songContainer);
+
   };
 
   beforeEach(() => {
@@ -102,7 +103,23 @@ describe("Library tests", () => {
   });
 
   it("buildSongItem should add a call to StorageManager.replaceItem on click event and change the classList", () => {
-    // TODO
+    // TODO DONE
+
+    const replaceItemSpy = jest.spyOn(library.storageManager, "replaceItem");
+    library.load();
+
+    const likedButton1 = document.querySelector(".fa-heart");
+
+    expect(likedButton1.classList.contains("fa-regular")).toBeTruthy();
+
+    likedButton1.click();
+
+    expect(replaceItemSpy).toBeCalled();
+    expect(likedButton1.classList.contains("fa-regular")).toBeFalsy();
+
+
+    
+
   });
 
   it("load should load window", () => {
