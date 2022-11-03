@@ -141,19 +141,16 @@ export class Library {
    */
   search (searchInput, searchSources, exactMatch) {
 
-    const songsToUpload =[];
-    const playlistsToLoad =[];
 
-    searchSources.playlists.forEach((playlist) => {
+    const playlistsToLoad = searchSources.playlists.filter((playlist) => {
       const playlistSearchingArray = [playlist.name, playlist.description];
-      if(this.searchInFields(playlistSearchingArray, searchInput.value, exactMatch))
-        playlistsToLoad.push(playlist);
-    } )
+        return this.searchInFields(playlistSearchingArray, searchInput.value, exactMatch);
+      }
+     )
 
-    searchSources.songs.forEach((song) => {
+     const songsToUpload = searchSources.songs.filter((song) => {
       const songSearchingArray = [song.name, song.artist, song.genre];
-      if(this.searchInFields(songSearchingArray, searchInput.value, exactMatch))
-        songsToUpload.push(song);
+        return this.searchInFields(songSearchingArray, searchInput.value, exactMatch);
     } )
 
     this.generateLists(playlistsToLoad, songsToUpload);
