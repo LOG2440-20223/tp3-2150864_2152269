@@ -153,13 +153,10 @@ export class Library {
     searchSources.songs.forEach((song) => {
       const songSearchingArray = [song.name, song.artist, song.genre];
       if(this.searchInFields(songSearchingArray, searchInput.value, exactMatch))
-      songsToUpload.push(song);
+        songsToUpload.push(song);
     } )
 
-
-
     this.generateLists(playlistsToLoad, songsToUpload);
-
   }
 }
 
