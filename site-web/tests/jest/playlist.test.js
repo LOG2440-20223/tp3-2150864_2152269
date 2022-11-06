@@ -327,7 +327,7 @@ describe("Playlist tests", () => {
   });
 
   it("bindEvents should correctly add event listener to mute button", () => {
-    // TODO
+    // TODO DONE
     playListManager.bindEvents();
     const muteToggleSpy = jest.spyOn(playListManager, "muteToggle").mockImplementation(() => {});
     document.getElementById("mute").dispatchEvent(new Event("click"));
@@ -335,7 +335,7 @@ describe("Playlist tests", () => {
   });
 
   it("bindEvents should correctly add event listener to previous button", () => {
-    // TODO
+    // TODO DONE
     playListManager.bindEvents();
     const previousSpy = jest.spyOn(playListManager, "playPreviousSong").mockImplementation(() => {});
     document.getElementById("previous").dispatchEvent(new Event("click"));
@@ -343,7 +343,7 @@ describe("Playlist tests", () => {
   });
 
   it("bindEvents should correctly add event listener to next button", () => {
-    // TODO
+    // TODO DONE
     playListManager.bindEvents();
     const nextSpy = jest.spyOn(playListManager, "playNextSong").mockImplementation(() => {});
     document.getElementById("next").dispatchEvent(new Event("click"));
@@ -351,7 +351,7 @@ describe("Playlist tests", () => {
   });
 
   it("bindEvents should correctly add event listener to shuffle button", () => {
-    // TODO
+    // TODO DONE
     playListManager.bindEvents();
     const shuffleSpy = jest.spyOn(playListManager, "shuffleToggle").mockImplementation(() => {});
     document.getElementById("shuffle").dispatchEvent(new Event("click"));
