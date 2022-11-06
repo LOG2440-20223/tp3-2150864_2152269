@@ -41,7 +41,8 @@ describe.only("Player tests", () => {
     //TODO DONE
     player.loadSongs(songStubs);
     expect(player.songsInPlayList).toEqual(songStubs);
-    expect(player.audio.src).toEqual("http://localhost/assets/media/01_song.mp3");
+    const playerAudioSrcSliced = player.audio.src.slice(16);
+    expect(`.${playerAudioSrcSliced}`).toEqual(songStub.src);
   });
 
   it("getSongFromIndex should not get song for an invalid index", () => {
@@ -156,11 +157,22 @@ describe.only("Player tests", () => {
   });
 
   it("playPreviousSong should decrement currentIndex when shuffle is disabled", () => {
-    // TODO
+    // TODO DONE
+    player.loadSongs(songStubs);
+    player.shuffle = false;
+    player.currentIndex = 1;
+    player.playPreviousSong();
+    expect(player.currentIndex).toEqual(0);
+    
   });
 
   it("playNextSong should increment currentIndex when shuffle is disabled", () => {
-    // TODO
+    // TODO DONE
+    player.loadSongs(songStubs);
+    player.shuffle = false;
+    player.currentIndex = 1;
+    player.playNextSong();
+    expect(player.currentIndex).toEqual(2);
   });
 
   it("playPreviousSong should return currentIndex % playlist's length if not shuffled", () => {
@@ -172,7 +184,13 @@ describe.only("Player tests", () => {
   });
 
   it("playNextSong should return currentIndex % playlist's length if not shuffled", () => {
-    // TODO
+    // TODO DONE
+    jest.spyOn(player, "playAudio").mockImplementation(() => {});
+    player.shuffle = false;
+    player.loadSongs(songStubs);
+    player.currentIndex = songStubs.length -1;
+    player.playNextSong();
+    expect(player.currentIndex).toEqual(0);
   });
 
   it("audioSeek should correctly add stepper & current time", () => {
@@ -185,7 +203,10 @@ describe.only("Player tests", () => {
   });
 
   it("muteToggle should return true if audio is muted", () => {
-    // TODO
+    // TODO DONE
+    jest.spyOn(player.audio, "volume", "get").mockReturnValue(0);
+    expect(player.muteToggle()).toBeTruthy();
+
   });
 
   it("muteToggle should return false if audio is not muted", () => {
@@ -195,6 +216,7 @@ describe.only("Player tests", () => {
 
   it("shuffleToggle should inverse shuffle state", () => {
     // TODO
+    
   });
 
   it("scrubTime should correctly add delta stepper", () => {
