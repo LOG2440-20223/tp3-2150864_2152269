@@ -55,7 +55,7 @@ describe("Playlist tests", () => {
     document.body.appendChild(shuffleButton);
 
     const muteButton = document.createElement("button");
-    muteButton.setAttribute("id", "shuffle");
+    muteButton.setAttribute("id", "mute");
     muteButton.setAttribute("classList", "");
     document.body.appendChild(muteButton);
 
@@ -240,13 +240,15 @@ describe("Playlist tests", () => {
     // TODO DONE
     const timelineElement = {value : ""};
     const playerAudioSeekSpy = jest.spyOn(playListManager.player, "audioSeek").mockImplementation(() => {});
-    playListManager.audioSeek(timelineElement)
+    playListManager.audioSeek(timelineElement);
     expect(playerAudioSeekSpy).toBeCalled();
   });
 
   it("muteToggle should call Player.muteToggle", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    const playerMutekSpy = jest.spyOn(playListManager.player, "muteToggle").mockImplementation(() => {});
+    playListManager.muteToggle();
+    expect(playerMutekSpy).toBeCalled();
   });
 
   it("muteToggle should correctly add class lists if player is muted", () => {
