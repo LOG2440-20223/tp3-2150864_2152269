@@ -289,10 +289,10 @@ describe("Playlist tests", () => {
   });
 
   it("scrubTime should call Player.scrubTime", () => {
-    // TODO
-    const playerShufflekSpy = jest.spyOn(playListManager.player, "shuffleToggle").mockImplementation(() => {});
-    playListManager.shuffleToggle(document.getElementById("shuffle"));
-    expect(playerShufflekSpy).toBeCalled();
+    // TODO DONE
+    const playerScrubTimekSpy = jest.spyOn(playListManager.player, "scrubTime").mockImplementation(() => {});
+    playListManager.scrubTime(0);
+    expect(playerScrubTimekSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listeners to Player.audio", () => {
@@ -312,8 +312,11 @@ describe("Playlist tests", () => {
   });
 
   it("bindEvents should correctly add event listener to timeline", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    playListManager.bindEvents();
+    const audioSeekSpy = jest.spyOn(playListManager, "audioSeek").mockImplementation(() => {});
+    document.getElementById("timeline").dispatchEvent(new Event("input"));
+    expect(audioSeekSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listener to play button", () => {
@@ -325,22 +328,34 @@ describe("Playlist tests", () => {
 
   it("bindEvents should correctly add event listener to mute button", () => {
     // TODO
-    expect(false).toBe(true)
+    playListManager.bindEvents();
+    const muteToggleSpy = jest.spyOn(playListManager, "muteToggle").mockImplementation(() => {});
+    document.getElementById("mute").dispatchEvent(new Event("click"));
+    expect(muteToggleSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listener to previous button", () => {
     // TODO
-    expect(false).toBe(true)
+    playListManager.bindEvents();
+    const previousSpy = jest.spyOn(playListManager, "playPreviousSong").mockImplementation(() => {});
+    document.getElementById("previous").dispatchEvent(new Event("click"));
+    expect(previousSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listener to next button", () => {
     // TODO
-    expect(false).toBe(true)
+    playListManager.bindEvents();
+    const nextSpy = jest.spyOn(playListManager, "playNextSong").mockImplementation(() => {});
+    document.getElementById("next").dispatchEvent(new Event("click"));
+    expect(nextSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listener to shuffle button", () => {
     // TODO
-    expect(false).toBe(true)
+    playListManager.bindEvents();
+    const shuffleSpy = jest.spyOn(playListManager, "shuffleToggle").mockImplementation(() => {});
+    document.getElementById("shuffle").dispatchEvent(new Event("click"));
+    expect(shuffleSpy).toBeCalled();
   });
 
   it("bindShortcuts should correctly bind shortcuts", () => {
