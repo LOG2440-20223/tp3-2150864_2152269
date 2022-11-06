@@ -50,9 +50,16 @@ describe("StorageManager tests", () => {
   });
 
   it("loadDataFromFile should load data if data is not already contained in localStorage", () => {
-    // TODO
-    expect(false).toBe(true)
-    
+    // TODO DONE
+    const defaultKey = "key";
+    const data = JSON.stringify(defaultKey);
+    const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
+    const localStorageSetItemSpy = jest.spyOn(localStorage.__proto__, 'setItem');
+    storageManager.loadDataFromFile(defaultKey, data);
+    expect(JSON.parse(localStorage.getItem(defaultKey))).toEqual(data);
+    expect(localStorageGetItemSpy).toBeCalled();
+    expect(localStorageGetItemSpy).toHaveBeenCalledWith(defaultKey);
+    expect(localStorageSetItemSpy).toBeCalled();
   });
 
   it("getData should not get localStorage's data given an invalid storageKey", () => {
