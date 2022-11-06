@@ -260,8 +260,12 @@ describe("Playlist tests", () => {
   });
 
   it("muteToggle should correctly add class lists if player is not muted", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    document.getElementById("mute").classList.add("fa-volume-high");
+    jest.spyOn(playListManager.player, "muteToggle").mockImplementation(() => false);
+    playListManager.muteToggle();
+    expect(document.getElementById("mute").classList.length).toEqual(1);
+    expect(document.getElementById("mute").classList[0]).toEqual("fa-volume-mute");
   });
 
   it("shuffleToggle should call Player.shuffleToggle", () => {
