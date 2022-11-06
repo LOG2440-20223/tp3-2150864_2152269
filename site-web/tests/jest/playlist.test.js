@@ -151,7 +151,7 @@ describe("Playlist tests", () => {
     const firstSong = { name: "", genre: "", artist: "", liked: true };
     const secondSong = { name: "", genre: "", artist: "", liked: false };
     const index = 0;
-    // TODO compléter le test avec cette configuration
+    // TODO compléter le test avec cette configuration DONE
     const songItem1 = playListManager.buildSongItem(firstSong, index);
     const songItem2 = playListManager.buildSongItem(secondSong, index);
     expect(songItem1.hasChildNodes() && songItem2.hasChildNodes()).toEqual(true);
@@ -166,7 +166,12 @@ describe("Playlist tests", () => {
 
   it("playAudio should call setCurrentSongName & Player.playAudio", () => {
     // TODO
-    expect(false).toBe(true)
+    const setCurrentSongNameSpy = jest.spyOn(playListManager, "setCurrentSongName").mockImplementation(() => {});
+    const playerPlayAudioSpy = jest.spyOn(playListManager.player, "playAudio").mockImplementation(() => {});
+    const index = 0;
+    playListManager.playAudio(index)
+    expect(setCurrentSongNameSpy).toBeCalled();
+    expect(playerPlayAudioSpy).toBeCalled();
   });
 
   it("playAudio should correctly add class lists if audio is paused", () => {
