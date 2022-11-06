@@ -37,7 +37,17 @@ describe("Playlist Editor tests", () => {
     imageInput.setAttribute("id", "image");
     document.body.appendChild(imageInput);
 
-    // TODO  : compléter la configuration du HTML pour l'élément dataList et le bouton d'ajout de chanson
+    // TODO  DONE : compléter la configuration du HTML pour l'élément dataList et le bouton d'ajout de chanson
+    const dataList = document.createElement("datalist");
+    dataList.setAttribute("id", "song-datalist");
+    document.body.appendChild(dataList);
+
+    const addSongButton = document.createElement("button");
+    addSongButton.setAttribute("id", "add-song-btn");
+    addSongButton.setAttribute("class", "fa fa-plus");
+    document.body.appendChild(addSongButton);
+
+
   };
 
   beforeEach(() => {
@@ -90,14 +100,35 @@ describe("Playlist Editor tests", () => {
   });
 
   it("addItemSelect should correctly add item to container", () => {
-    // TODO
+    // TODO DONE
+    const songContainer = document.getElementById("song-list");
+    const numberOfChildren = songContainer.childElementCount;
+
+    const randomEvent = new Event("");
+    playListEditor.addItemSelect(randomEvent);
+    
+    expect(songContainer.childElementCount).toEqual(numberOfChildren + 1);
+    const songInputs = document.getElementsByClassName("song-input");
+    expect(songInputs[0].value).toEqual("Whip");
+
+
   });
 
   it("addItemSelect should remove event target's parent node upon clicked", () => {
-    // TODO
-
+    // TODO DONE
+    
+    const clickEvent = new Event("click");
+    playListEditor.addItemSelect(clickEvent);
+  
     const parent = document.getElementById("song-2");
-    expect(parent).toBeFalsy();
+    expect(parent).toBeTruthy();
+
+
+    const removeButton = document.getElementsByClassName("fa-minus")[0];
+    removeButton.click();
+
+    const parent_deleted = document.getElementById("song-2");
+    expect(parent_deleted).toBeFalsy();
   });
 
   it("load should call StorageManager.loadAllData & .buildDataList and buildDataList", () => {
@@ -110,11 +141,28 @@ describe("Playlist Editor tests", () => {
     const playListEditorBuildDataListSpy = jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
     jest.spyOn(playListEditor, "updateImageDisplay").mockImplementation(() => {});
     jest.spyOn(playListEditor, "addItemSelect").mockImplementation(() => {});
-    // TODO compléter le test après la configuration
+    // TODO DONE compléter le test après la configuration
+    playListEditor.load();
+    expect(playListEditorStorageManagerLoadAllDataSpy).toBeCalled();
+    expect(playListEditorStorageManagerGetDataSpy).toBeCalled();
+    expect(playListEditorBuildDataListSpy).toBeCalled();
+
   });
 
   it("load should correctly add updateImageDisplay as eventListener on change event to image input", () => {
-    // TODO
+    // TODO DONE
+    const imageInput = document.getElementById("image");
+    const imageAddEventListener = jest.spyOn(imageInput, "addEventListener").mockImplementation(() => {});
+
+    jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
+    jest.spyOn(playListEditor.storageManager,"loadAllData").mockImplementation(() => {});
+    jest.spyOn(playListEditor.storageManager, "getData").mockImplementation(() => {});
+    playListEditor.load();
+
+    expect(imageAddEventListener).toBeCalled();
+    expect(imageAddEventListener).toBeCalledWith("change", playListEditor.updateImageDisplay);
+    
+    
   });
 
   it("load should correctly add addItemSelect as eventListener on click event to add song button", () => {
