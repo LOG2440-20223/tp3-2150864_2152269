@@ -120,8 +120,7 @@ export class Library {
   searchInFields (searchFields, searchValue, exactMatch) {
 
     return searchFields.some((string) => 
-      this.includesSubstring(string,searchValue,exactMatch)
-    );
+    this.includesSubstring(string, searchValue, exactMatch));
   }
 
   /**

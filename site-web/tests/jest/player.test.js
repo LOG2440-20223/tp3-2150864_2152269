@@ -38,9 +38,10 @@ describe.only("Player tests", () => {
   });
 
   it("loadSongs should load songs in playlist", () => {
-    expect(player.songsInPlayList).toEqual([]);
-    expect(player.audio.src).toEqual("");
-    // TODO
+    //TODO DONE
+    player.loadSongs(songStubs);
+    expect(player.songsInPlayList).toEqual(songStubs);
+    expect(player.audio.src).toEqual("http://localhost/assets/media/01_song.mp3");
   });
 
   it("getSongFromIndex should not get song for an invalid index", () => {
@@ -54,7 +55,13 @@ describe.only("Player tests", () => {
   });
 
   it("getSongFromIndex should get song for a valid index", () => {
-    // TODO
+    // TODO DONE
+    const validIndexes = [0, 1, 2, 3, 4];
+    player.songsInPlayList = songStubs;
+    for (const validIndex of validIndexes) {
+      const songFromIndex = player.getSongFromIndex(validIndex);
+      expect(songFromIndex).toEqual(songStubs[validIndex]);
+    }
   });
 
   it("playAudio should resume correctly given an index of -1", () => {
@@ -71,7 +78,18 @@ describe.only("Player tests", () => {
   });
 
   it("playAudio should pause correctly given an index of -1", () => {
-    // TODO
+    // TODO DONE
+    const playerAudioPlaySpy = jest.spyOn(player.audio, "play").mockImplementation(() => {});
+    const playerAudioPauseSpy = jest.spyOn(player.audio, "pause").mockImplementation(() => {});
+    const playerAudioLoadSpy = jest.spyOn(player.audio, "load").mockImplementation(() => {});
+    const playerGetSongFromIndexSpy = jest.spyOn(player, "getSongFromIndex").mockImplementation(() => {});
+    jest.spyOn(player.audio, "paused", "get").mockReturnValue(false);
+    player.playAudio();
+    expect(playerAudioPlaySpy).not.toBeCalled();
+    expect(playerAudioPauseSpy).toBeCalled();
+    expect(playerAudioLoadSpy).not.toBeCalled();
+    expect(playerGetSongFromIndexSpy).not.toBeCalled();
+
   });
 
   it("playAudio should play audio for any given index except -1", () => {
@@ -88,11 +106,19 @@ describe.only("Player tests", () => {
   });
 
   it("playPreviousSong should call playAudio", () => {
-    // TODO
+    // TODO DONE
+    const playerPlayAudioSpy = jest.spyOn(player, "playAudio").mockImplementation(() => {});
+    player.playPreviousSong();
+    expect(playerPlayAudioSpy).toBeCalled();
+
   });
 
   it("playNextSong should call playAudio", () => {
-    // TODO
+    // TODO DONE
+    const playerPlayAudioSpy = jest.spyOn(player, "playAudio").mockImplementation(() => {});
+    player.playNextSong();
+    expect(playerPlayAudioSpy).toBeCalled();
+
   });
 
   it("playPreviousSong & playNextSong should return a random index between 0 and playlist's length if shuffled", () => {
