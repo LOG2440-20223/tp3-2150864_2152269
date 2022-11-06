@@ -84,8 +84,27 @@ describe("StorageManager tests", () => {
   });
 
   it("getItemById should find item with specific id", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    const defaultKey = "key";
+    const dataTest = [
+      {
+        id: 0,
+        name: "Whip",
+        artist: "prazkhanal",
+        genre: "Electronic",
+      },
+      {
+        id: 1,
+        name: "Overflow",
+        artist: "Piano Amor",
+        genre: "Classic",
+      }
+    ];
+    const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
+    localStorage.setItem(defaultKey, JSON.stringify(dataTest));
+    expect(storageManager.getItemById(defaultKey, 0)).toEqual({id: 0, name: "Whip", artist: "prazkhanal", genre: "Electronic"});
+    expect(storageManager.getItemById(defaultKey, 1)).toEqual({id: 1, name: "Overflow", artist: "Piano Amor", genre: "Classic"});
+    
   });
 
   it("addItem should correctly add an item to localStorage", () => {
