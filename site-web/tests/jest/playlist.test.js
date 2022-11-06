@@ -238,9 +238,8 @@ describe("Playlist tests", () => {
 
   it("audioSeek should call Player.audioSeek", () => {
     // TODO DONE
-    const timelineElement = {value : ""};
     const playerAudioSeekSpy = jest.spyOn(playListManager.player, "audioSeek").mockImplementation(() => {});
-    playListManager.audioSeek(timelineElement);
+    playListManager.audioSeek(document.getElementById("timeline"));
     expect(playerAudioSeekSpy).toBeCalled();
   });
 
@@ -291,7 +290,9 @@ describe("Playlist tests", () => {
 
   it("scrubTime should call Player.scrubTime", () => {
     // TODO
-    expect(false).toBe(true)
+    const playerShufflekSpy = jest.spyOn(playListManager.player, "shuffleToggle").mockImplementation(() => {});
+    playListManager.shuffleToggle(document.getElementById("shuffle"));
+    expect(playerShufflekSpy).toBeCalled();
   });
 
   it("bindEvents should correctly add event listeners to Player.audio", () => {
