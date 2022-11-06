@@ -204,12 +204,12 @@ describe("Playlist tests", () => {
   });
 
   it("playNextSong should call setCurrentSongName & Player.playNextSong", () => {
-    // TODO
+    // TODO DONE
     const setCurrentSongNameSpy = jest.spyOn(playListManager, "setCurrentSongName").mockImplementation(() => {});
-    const playerPlayNextSongSpy = jest.spyOn(playListManager.player, "playNextSong").mockImplementation(() => {});
-    playListManager.playAudio()
+    const nextSpy = jest.spyOn(playListManager.player, "playNextSong").mockImplementation(() => {});
+    playListManager.playNextSong()
     expect(setCurrentSongNameSpy).toBeCalled();
-    expect(playerPlayNextSongSpy).toBeCalled();
+    expect(nextSpy).toBeCalled();
   });
 
   it("setCurrentSongName should set song name to #now-playing element", () => {
@@ -237,8 +237,11 @@ describe("Playlist tests", () => {
   });
 
   it("audioSeek should call Player.audioSeek", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    const timelineElement = {value : ""};
+    const playerAudioSeekSpy = jest.spyOn(playListManager.player, "audioSeek").mockImplementation(() => {});
+    playListManager.audioSeek(timelineElement)
+    expect(playerAudioSeekSpy).toBeCalled();
   });
 
   it("muteToggle should call Player.muteToggle", () => {
