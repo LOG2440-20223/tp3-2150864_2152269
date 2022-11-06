@@ -269,13 +269,17 @@ describe("Playlist tests", () => {
   });
 
   it("shuffleToggle should call Player.shuffleToggle", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    const playerShufflekSpy = jest.spyOn(playListManager.player, "shuffleToggle").mockImplementation(() => {});
+    playListManager.shuffleToggle(document.getElementById("shuffle"));
+    expect(playerShufflekSpy).toBeCalled();
   });
 
   it("shuffleToggle should correctly add class lists if shuffled", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    jest.spyOn(playListManager.player, "shuffleToggle").mockImplementation(() => true);
+    playListManager.shuffleToggle(document.getElementById("shuffle"));
+    expect(document.getElementById("shuffle").classList.length).toEqual(1);
   });
 
   it("shuffleToggle should correctly add class lists if not shuffled", () => {
