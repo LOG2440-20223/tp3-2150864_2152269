@@ -215,12 +215,23 @@ describe.only("Player tests", () => {
   });
 
   it("shuffleToggle should inverse shuffle state", () => {
-    // TODO
+    // TODO DONE
+    player.shuffle = false;
+    player.shuffleToggle();
+    expect(player.shuffle).toBeTruthy();
+    player.shuffleToggle();
+    expect(player.shuffle).toBeFalsy();
     
   });
 
   it("scrubTime should correctly add delta stepper", () => {
-    // TODO
+    // TODO DONE
+    for (let i = 0; i < MAX_TEST_ITERATIONS; ++i) {
+      player.audio.currentTime = 0;
+      jest.spyOn(player.audio, "duration", "get").mockReturnValue(i);
+      player.scrubTime(i);
+      expect(player.audio.currentTime).toEqual(0 +i);
+    }
   });
 
   it("currentSong getter should correctly get the current song", () => {
