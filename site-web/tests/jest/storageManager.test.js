@@ -124,8 +124,11 @@ describe("StorageManager tests", () => {
   });
 
   it("getIdFromName should return -1 given an invalid elementName", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    const elementName = NaN;
+    const expectedId = 0;
+    jest.spyOn(storageManager, 'getData').mockImplementation(() => [{ name: elementName, id: expectedId }]);
+    expect(storageManager.getIdFromName("key", elementName)).toEqual(-1);
   });
 
   it("resetAllData should reset localStorage", () => {
