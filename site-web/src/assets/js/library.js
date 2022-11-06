@@ -119,15 +119,9 @@ export class Library {
    */
   searchInFields (searchFields, searchValue, exactMatch) {
 
-    let isValueInside = false;
-    const originalValue = exactMatch ? searchValue : searchValue.toLowerCase();
-
-    searchFields.forEach((string) => {
-      if (this.includesSubstring(string, originalValue, exactMatch))
-        isValueInside = true;
-    })
-    
-    return isValueInside;
+    return searchFields.some((string) => 
+      this.includesSubstring(string,searchValue,exactMatch)
+    );
   }
 
   /**
