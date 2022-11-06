@@ -165,7 +165,7 @@ describe("Playlist tests", () => {
   });
 
   it("playAudio should call setCurrentSongName & Player.playAudio", () => {
-    // TODO
+    // TODO DONE
     const setCurrentSongNameSpy = jest.spyOn(playListManager, "setCurrentSongName").mockImplementation(() => {});
     const playerPlayAudioSpy = jest.spyOn(playListManager.player, "playAudio").mockImplementation(() => {});
     const index = 0;
@@ -185,8 +185,14 @@ describe("Playlist tests", () => {
   });
 
   it("playAudio should correctly add class lists if audio is not paused", () => {
-    // TODO
-    expect(false).toBe(true)
+    // TODO DONE
+    jest.spyOn(playListManager, "setCurrentSongName").mockImplementation(() => {});
+    jest.spyOn(playListManager.player, "playAudio").mockImplementation(() => {});
+    document.getElementById("play").classList.add("fa-play");
+    jest.spyOn(playListManager.player.audio, "paused", "get").mockReturnValue(false);
+    playListManager.playAudio(null);
+    expect(document.getElementById("play").classList.length).toEqual(1);
+    expect(document.getElementById("play").classList[0]).toEqual("fa-pause");
   });
 
   it("playPreviousSong should call setCurrentSongName & Player.playPreviousSong", () => {
