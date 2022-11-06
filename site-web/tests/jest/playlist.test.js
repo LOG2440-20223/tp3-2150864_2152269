@@ -39,6 +39,40 @@ describe("Playlist tests", () => {
     document.body.appendChild(playButton);
 
     // TODO : compléter la configuration du HTML pour les éléments de la barre de progression et les autres boutons
+    const previousButton = document.createElement("button");
+    previousButton.setAttribute("id", "previous");
+    previousButton.setAttribute("classList", "");
+    document.body.appendChild(previousButton);
+
+    const nextButton = document.createElement("button");
+    nextButton.setAttribute("id", "next");
+    nextButton.setAttribute("classList", "");
+    document.body.appendChild(nextButton);
+
+    const shuffleButton = document.createElement("button");
+    shuffleButton.setAttribute("id", "shuffle");
+    shuffleButton.setAttribute("classList", "");
+    document.body.appendChild(shuffleButton);
+
+    const muteButton = document.createElement("button");
+    muteButton.setAttribute("id", "shuffle");
+    muteButton.setAttribute("classList", "");
+    document.body.appendChild(muteButton);
+
+    const currentTime = document.createElement("span");
+    currentTime.setAttribute("id", "timeline-current");
+    document.body.appendChild(currentTime);
+
+    const timeline = document.createElement("input");
+    timeline.setAttribute("id", "timeline");
+    timeline.setAttribute("type", "range");
+    timeline.setAttribute("max", "100");
+    timeline.setAttribute("value", "0");
+    document.body.appendChild(timeline);
+
+    const duration = document.createElement("span");
+    duration.setAttribute("id", "timeline-end");
+    document.body.appendChild(duration);
 
     const audio = document.createElement("audio");
     audio.setAttribute("id", "audio");
@@ -87,7 +121,31 @@ describe("Playlist tests", () => {
   });
 
   it("buildSongItem should build song's item while calling playAudio & setCurrentSongName upon click", () => {
-    // TODO
+    // TODO DONE
+    const song = {
+      index: 0,
+      name: "Whip",
+      artist: "prazkhanal",
+      src: "./assets/media/01_song.mp3",
+      genre: "Electronic",
+      liked: false
+    };
+    const playAudioSpy = jest.spyOn(playListManager, "playAudio").mockImplementation(() => {});
+    const setCurrentSongNameSpy = jest.spyOn(playListManager, "setCurrentSongName").mockImplementation(() => {});
+
+    const songItem = playListManager.buildSongItem(song, song.index);
+
+    songItem.dispatchEvent(new Event("click"));
+    
+    expect(playAudioSpy).toBeCalled();
+    expect(setCurrentSongNameSpy).toBeCalled();
+    expect(songItem.hasChildNodes()).toEqual(true);
+    expect(songItem.innerHTML).toEqual(
+      `<span>${song.index + 1}</span><p>${song.name}</p><p>${song.genre}</p><p>${song.artist}</p><i class="fa-regular fa-2x fa-heart"></i>`
+    );
+    
+  
+
   });
 
   it("buildSongItem should build different heart icons", () => {
@@ -95,10 +153,12 @@ describe("Playlist tests", () => {
     const secondSong = { name: "", genre: "", artist: "", liked: false };
     const index = 0;
     // TODO compléter le test avec cette configuration
+    expect(false).toBe(true)
   });
 
   it("playAudio should call setCurrentSongName & Player.playAudio", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("playAudio should correctly add class lists if audio is paused", () => {
@@ -113,6 +173,7 @@ describe("Playlist tests", () => {
 
   it("playAudio should correctly add class lists if audio is not paused", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("playPreviousSong should call setCurrentSongName & Player.playPreviousSong", () => {
@@ -125,6 +186,7 @@ describe("Playlist tests", () => {
 
   it("playNextSong should call setCurrentSongName & Player.playNextSong", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("setCurrentSongName should set song name to #now-playing element", () => {
@@ -153,10 +215,12 @@ describe("Playlist tests", () => {
 
   it("audioSeek should call Player.audioSeek", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("muteToggle should call Player.muteToggle", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("muteToggle should correctly add class lists if player is muted", () => {
@@ -169,14 +233,17 @@ describe("Playlist tests", () => {
 
   it("muteToggle should correctly add class lists if player is not muted", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("shuffleToggle should call Player.shuffleToggle", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("shuffleToggle should correctly add class lists if shuffled", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("shuffleToggle should correctly add class lists if not shuffled", () => {
@@ -188,6 +255,7 @@ describe("Playlist tests", () => {
 
   it("scrubTime should call Player.scrubTime", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindEvents should correctly add event listeners to Player.audio", () => {
@@ -208,6 +276,7 @@ describe("Playlist tests", () => {
 
   it("bindEvents should correctly add event listener to timeline", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindEvents should correctly add event listener to play button", () => {
@@ -219,18 +288,22 @@ describe("Playlist tests", () => {
 
   it("bindEvents should correctly add event listener to mute button", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindEvents should correctly add event listener to previous button", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindEvents should correctly add event listener to next button", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindEvents should correctly add event listener to shuffle button", () => {
     // TODO
+    expect(false).toBe(true)
   });
 
   it("bindShortcuts should correctly bind shortcuts", () => {
