@@ -70,8 +70,9 @@ describe("StorageManager tests", () => {
     const defaultKey = "key";
     const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
     localStorage.setItem(defaultKey, JSON.stringify(defaultKey));
-    // TODO compléter le teste avec cette configuration
-    expect(false).toBe(true)
+    // TODO compléter le teste avec cette configuration DONE
+    expect(storageManager.getData(defaultKey)).toBeTruthy();
+    expect(storageManager.getData(defaultKey)).toEqual(defaultKey);
   });
 
   it("getItemById should call getData", () => {
