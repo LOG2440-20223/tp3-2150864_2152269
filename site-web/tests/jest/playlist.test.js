@@ -126,7 +126,6 @@ describe("Playlist tests", () => {
       index: 0,
       name: "Whip",
       artist: "prazkhanal",
-      src: "./assets/media/01_song.mp3",
       genre: "Electronic",
       liked: false
     };
@@ -153,7 +152,16 @@ describe("Playlist tests", () => {
     const secondSong = { name: "", genre: "", artist: "", liked: false };
     const index = 0;
     // TODO compléter le test avec cette configuration
-    expect(false).toBe(true)
+    const songItem1 = playListManager.buildSongItem(firstSong, index);
+    const songItem2 = playListManager.buildSongItem(secondSong, index);
+    expect(songItem1.hasChildNodes() && songItem2.hasChildNodes()).toEqual(true);
+    expect(songItem1.innerHTML).toEqual(
+      `<span>${1}</span><p>${firstSong.name}</p><p>${firstSong.genre}</p><p>${firstSong.artist}</p><i class="fa fa-2x fa-heart"></i>`
+    );
+    expect(songItem2.innerHTML).toEqual(
+      `<span>${1}</span><p>${secondSong.name}</p><p>${secondSong.genre}</p><p>${secondSong.artist}</p><i class="fa-regular fa-2x fa-heart"></i>`
+    );
+    
   });
 
   it("playAudio should call setCurrentSongName & Player.playAudio", () => {
