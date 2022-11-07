@@ -38,7 +38,7 @@ describe("Playlist tests", () => {
     playButton.setAttribute("classList", "");
     document.body.appendChild(playButton);
 
-    // TODO : compléter la configuration du HTML pour les éléments de la barre de progression et les autres boutons
+    
     const previousButton = document.createElement("button");
     previousButton.setAttribute("id", "previous");
     previousButton.setAttribute("classList", "");
