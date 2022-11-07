@@ -64,7 +64,7 @@ export default class PlayListEditor {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.createPlaylist(form).catch(() => {}); // Could add a console.log for debug purposes here
+      this.createPlaylist(form); // Could add a console.log for debug purposes here
       location.href = "index.html";
     });
   }
