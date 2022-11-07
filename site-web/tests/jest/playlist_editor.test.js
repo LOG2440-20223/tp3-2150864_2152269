@@ -123,7 +123,6 @@ describe("Playlist Editor tests", () => {
     const parent = document.getElementById("song-2");
     expect(parent).toBeTruthy();
 
-
     const removeButton = document.getElementsByClassName("fa-minus")[0];
     removeButton.click();
 
@@ -187,7 +186,7 @@ describe("Playlist Editor tests", () => {
     jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
     jest.spyOn(playListEditor.storageManager,"loadAllData").mockImplementation(() => {});
     jest.spyOn(playListEditor.storageManager, "getData").mockImplementation(() => {});
-    const createPlaylistSpy = jest.spyOn(playListEditor, "createPlaylist").mockImplementation(() => {});
+    const createPlaylistSpy = jest.spyOn(playListEditor, "createPlaylist").mockImplementation( async () => {});
     
     const submitEvent = new Event("submit");
     const submitEventPreventDefaultSpy = jest.spyOn(submitEvent, "preventDefault").mockImplementation(() => {});
