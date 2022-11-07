@@ -7,7 +7,6 @@ describe("Library tests", () => {
   let library;
 
   const setUpHTML = () => {
-    
     const searchBar = document.createElement("input");
     searchBar.setAttribute("id", "search-input");
     document.body.appendChild(searchBar);
@@ -52,7 +51,6 @@ describe("Library tests", () => {
   });
 
   it("generateLists should call buildPlaylistItem and buildSongItem, and append children to containers", () => {
-
     const buildPlaylistItemSpy = jest.spyOn(library, "buildPlaylistItem").mockImplementation(() => {
       return document.createElement("a");
     });
@@ -81,7 +79,6 @@ describe("Library tests", () => {
   });
 
   it("buildSongItem should build song's item", () => {
-    
     const song = {
       name: "Whip",
       artist: "prazkhanal",
@@ -96,7 +93,6 @@ describe("Library tests", () => {
   });
 
   it("buildSongItem should add a call to StorageManager.replaceItem on click event and change the classList", () => {
-
     const replaceItemSpy = jest.spyOn(library.storageManager, "replaceItem");
     library.load();
 

@@ -38,7 +38,6 @@ describe("Playlist tests", () => {
     playButton.setAttribute("classList", "");
     document.body.appendChild(playButton);
 
-    
     const previousButton = document.createElement("button");
     previousButton.setAttribute("id", "previous");
     previousButton.setAttribute("classList", "");
