@@ -50,8 +50,16 @@ describe("StorageManager tests", () => {
   });
 
   it("loadDataFromFile should load data if data is not already contained in localStorage", () => {
-    // TODO
-    
+    // TODO DONE
+    const defaultKey = "key";
+    const data = JSON.stringify(defaultKey);
+    const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
+    const localStorageSetItemSpy = jest.spyOn(localStorage.__proto__, 'setItem');
+    storageManager.loadDataFromFile(defaultKey, data);
+    expect(JSON.parse(localStorage.getItem(defaultKey))).toEqual(data);
+    expect(localStorageGetItemSpy).toBeCalled();
+    expect(localStorageGetItemSpy).toHaveBeenCalledWith(defaultKey);
+    expect(localStorageSetItemSpy).toBeCalled();
   });
 
   it("getData should not get localStorage's data given an invalid storageKey", () => {
@@ -62,7 +70,9 @@ describe("StorageManager tests", () => {
     const defaultKey = "key";
     const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
     localStorage.setItem(defaultKey, JSON.stringify(defaultKey));
-    // TODO compléter le teste avec cette configuration
+    // TODO compléter le teste avec cette configuration DONE
+    expect(storageManager.getData(defaultKey)).toBeTruthy();
+    expect(storageManager.getData(defaultKey)).toEqual(defaultKey);
   });
 
   it("getItemById should call getData", () => {
@@ -74,7 +84,12 @@ describe("StorageManager tests", () => {
   });
 
   it("getItemById should find item with specific id", () => {
-    // TODO
+    // TODO DONE
+    const defaultKey = "key";
+    const dataTest = {id: 0, name : "test"};
+    jest.spyOn(storageManager, "getData").mockImplementation(() => [dataTest]);
+    expect(storageManager.getItemById(defaultKey, 0)).toEqual(dataTest);
+    expect(storageManager.getItemById(defaultKey, 1)).toEqual(undefined);
   });
 
   it("addItem should correctly add an item to localStorage", () => {
@@ -90,7 +105,16 @@ describe("StorageManager tests", () => {
   });
 
   it("replaceItem should correctly replace an item in localStorage with id checks", () => {
-    // TODO
+    // TODO DONE
+    const defaultKey = "key";
+    const item = {id: 0, name: "item"};
+    const newItem = {id: 0, name: "New item"};
+    localStorage.setItem(defaultKey, JSON.stringify([item]));
+    expect(JSON.parse(localStorage.getItem(defaultKey))).toEqual([item]);
+    expect(storageManager.getItemById(defaultKey, 0)).toEqual(item);
+    storageManager.replaceItem(defaultKey, newItem);
+    expect(JSON.parse(localStorage.getItem(defaultKey))).toEqual([newItem]);
+    expect(storageManager.getItemById(defaultKey, 0)).toEqual(newItem);
   });
 
   it("replaceItem should call getItem & setItem", () => {
@@ -104,7 +128,12 @@ describe("StorageManager tests", () => {
   });
 
   it("getIdFromName should call getData", () => {
-    // TODO
+    // TODO DONE
+    const defaultKey = "key";
+    const storageManagerGetDataSpy = jest.spyOn(storageManager, 'getData').mockImplementation(() => []);
+    storageManager.getIdFromName(defaultKey, undefined);
+    expect(storageManagerGetDataSpy).toBeCalled();
+    expect(storageManagerGetDataSpy).toHaveBeenCalledWith(defaultKey);
   });
 
   it("getIdFromName should return a valid id given a valid elementName", () => {
@@ -115,7 +144,12 @@ describe("StorageManager tests", () => {
   });
 
   it("getIdFromName should return -1 given an invalid elementName", () => {
-    // TODO
+    // TODO DONE
+    const elementName = "elementName";
+    const expectedId = 0;
+    const invalidName = "invalidName";
+    jest.spyOn(storageManager, 'getData').mockImplementation(() => [{ name: elementName, id: expectedId }]);
+    expect(storageManager.getIdFromName("key", invalidName)).toEqual(-1);
   });
 
   it("resetAllData should reset localStorage", () => {
