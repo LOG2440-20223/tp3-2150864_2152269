@@ -37,7 +37,7 @@ describe("Playlist Editor tests", () => {
     imageInput.setAttribute("id", "image");
     document.body.appendChild(imageInput);
 
-    // TODO  DONE : compléter la configuration du HTML pour l'élément dataList et le bouton d'ajout de chanson
+    
     const dataList = document.createElement("datalist");
     dataList.setAttribute("id", "song-dataList");
     document.body.appendChild(dataList);
