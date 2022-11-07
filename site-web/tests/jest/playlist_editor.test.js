@@ -118,7 +118,7 @@ describe("Playlist Editor tests", () => {
   });
 
   it("addItemSelect should correctly add item to container", () => {
-    // TODO DONE
+  
     const songContainer = document.getElementById("song-list");
     const numberOfChildren = songContainer.childElementCount;
 
@@ -131,8 +131,6 @@ describe("Playlist Editor tests", () => {
   });
 
   it("addItemSelect should remove event target's parent node upon clicked", () => {
-    // TODO DONE
-
     const clickEvent = new Event("click");
     playListEditor.addItemSelect(clickEvent);
 
@@ -156,7 +154,7 @@ describe("Playlist Editor tests", () => {
     const playListEditorBuildDataListSpy = jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
     jest.spyOn(playListEditor, "updateImageDisplay").mockImplementation(() => {});
     jest.spyOn(playListEditor, "addItemSelect").mockImplementation(() => {});
-    // TODO DONE compléter le test après la configuration
+    
     playListEditor.load();
     expect(playListEditorStorageManagerLoadAllDataSpy).toBeCalled();
     expect(playListEditorStorageManagerGetDataSpy).toBeCalled();
@@ -164,7 +162,7 @@ describe("Playlist Editor tests", () => {
   });
 
   it("load should correctly add updateImageDisplay as eventListener on change event to image input", () => {
-    // TODO DONE
+    
     const imageInput = document.getElementById("image");
     const imageAddEventListener = jest.spyOn(imageInput, "addEventListener").mockImplementation(() => {});
 
@@ -178,7 +176,7 @@ describe("Playlist Editor tests", () => {
   });
 
   it("load should correctly add addItemSelect as eventListener on click event to add song button", () => {
-    // TODO DONE
+    
     const addSongButton = document.getElementById("add-song-btn");
     const addSongButtonAddEventListener = jest.spyOn(addSongButton, "addEventListener").mockImplementation(() => {});
     jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
@@ -192,7 +190,6 @@ describe("Playlist Editor tests", () => {
   });
 
   it("load should correctly call createPlaylist and preventDefault on submit event to the form", () => {
-    // TODO DONE
 
     jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
     jest.spyOn(playListEditor.storageManager, "loadAllData").mockImplementation(() => {});
