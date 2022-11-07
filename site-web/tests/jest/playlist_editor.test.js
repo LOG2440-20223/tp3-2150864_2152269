@@ -192,13 +192,23 @@ describe("Playlist Editor tests", () => {
   });
 
   it("load should correctly call createPlaylist and preventDefault on submit event to the form", () => {
+<<<<<<< HEAD
     // TODO
 
+=======
+    // TODO DONE
+    
+>>>>>>> 29cf41e9b0edb577cd023f11a55160abfeb640e0
     jest.spyOn(playListEditor, "buildDataList").mockImplementation(() => {});
     jest.spyOn(playListEditor.storageManager, "loadAllData").mockImplementation(() => {});
     jest.spyOn(playListEditor.storageManager, "getData").mockImplementation(() => {});
+<<<<<<< HEAD
     const createPlaylistSpy = jest.spyOn(playListEditor, "createPlaylist").mockImplementation(() => {});
 
+=======
+    const createPlaylistSpy = jest.spyOn(playListEditor, "createPlaylist").mockImplementation( async () => {});
+    
+>>>>>>> 29cf41e9b0edb577cd023f11a55160abfeb640e0
     const submitEvent = new Event("submit");
     const submitEventPreventDefaultSpy = jest.spyOn(submitEvent, "preventDefault").mockImplementation(() => {});
 
