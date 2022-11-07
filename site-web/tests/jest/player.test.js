@@ -38,10 +38,11 @@ describe.only("Player tests", () => {
   });
 
   it("loadSongs should load songs in playlist", () => {
-    //TODO DONE
+    // TODO DONE
     player.loadSongs(songStubs);
     expect(player.songsInPlayList).toEqual(songStubs);
-    const playerAudioSrcSliced = player.audio.src.slice(16);
+    const startValue = 16;
+    const playerAudioSrcSliced = player.audio.src.slice(startValue);
     expect(`.${playerAudioSrcSliced}`).toEqual(songStub.src);
   });
 
@@ -57,7 +58,7 @@ describe.only("Player tests", () => {
 
   it("getSongFromIndex should get song for a valid index", () => {
     // TODO DONE
-    const validIndexes = [0, 1, 2, 3, 4];
+    const validIndexes = [0, 1, 2, 3, songStubs.length - 1];
     player.songsInPlayList = songStubs;
     for (const validIndex of validIndexes) {
       const songFromIndex = player.getSongFromIndex(validIndex);
@@ -90,7 +91,6 @@ describe.only("Player tests", () => {
     expect(playerAudioPauseSpy).toBeCalled();
     expect(playerAudioLoadSpy).not.toBeCalled();
     expect(playerGetSongFromIndexSpy).not.toBeCalled();
-
   });
 
   it("playAudio should play audio for any given index except -1", () => {
@@ -111,7 +111,6 @@ describe.only("Player tests", () => {
     const playerPlayAudioSpy = jest.spyOn(player, "playAudio").mockImplementation(() => {});
     player.playPreviousSong();
     expect(playerPlayAudioSpy).toBeCalled();
-
   });
 
   it("playNextSong should call playAudio", () => {
@@ -119,7 +118,6 @@ describe.only("Player tests", () => {
     const playerPlayAudioSpy = jest.spyOn(player, "playAudio").mockImplementation(() => {});
     player.playNextSong();
     expect(playerPlayAudioSpy).toBeCalled();
-
   });
 
   it("playPreviousSong & playNextSong should return a random index between 0 and playlist's length if shuffled", () => {
@@ -163,7 +161,6 @@ describe.only("Player tests", () => {
     player.currentIndex = 1;
     player.playPreviousSong();
     expect(player.currentIndex).toEqual(0);
-    
   });
 
   it("playNextSong should increment currentIndex when shuffle is disabled", () => {
@@ -188,7 +185,7 @@ describe.only("Player tests", () => {
     jest.spyOn(player, "playAudio").mockImplementation(() => {});
     player.shuffle = false;
     player.loadSongs(songStubs);
-    player.currentIndex = songStubs.length -1;
+    player.currentIndex = songStubs.length - 1;
     player.playNextSong();
     expect(player.currentIndex).toEqual(0);
   });
@@ -206,7 +203,6 @@ describe.only("Player tests", () => {
     // TODO DONE
     jest.spyOn(player.audio, "volume", "get").mockReturnValue(0);
     expect(player.muteToggle()).toBeTruthy();
-
   });
 
   it("muteToggle should return false if audio is not muted", () => {
@@ -221,7 +217,6 @@ describe.only("Player tests", () => {
     expect(player.shuffle).toBeTruthy();
     player.shuffleToggle();
     expect(player.shuffle).toBeFalsy();
-    
   });
 
   it("scrubTime should correctly add delta stepper", () => {
@@ -230,7 +225,7 @@ describe.only("Player tests", () => {
       player.audio.currentTime = 0;
       jest.spyOn(player.audio, "duration", "get").mockReturnValue(i);
       player.scrubTime(i);
-      expect(player.audio.currentTime).toEqual(0 +i);
+      expect(player.audio.currentTime).toEqual(0 + i);
     }
   });
 

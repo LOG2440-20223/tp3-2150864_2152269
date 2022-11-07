@@ -11,7 +11,7 @@ describe("Library tests", () => {
     const searchBar = document.createElement("input");
     searchBar.setAttribute("id", "search-input");
     document.body.appendChild(searchBar);
-    
+
     const searchButton = document.createElement("button");
     searchButton.setAttribute("id", "search-btn");
     document.body.appendChild(searchButton);
@@ -19,7 +19,7 @@ describe("Library tests", () => {
     const specificSearchInput = document.createElement("input");
     specificSearchInput.setAttribute("id", "exact-search");
     document.body.appendChild(specificSearchInput);
-    
+
     const clearSearch = document.createElement("i");
     clearSearch.setAttribute("id", "clear-search-bar");
     document.body.appendChild(clearSearch);
@@ -31,7 +31,6 @@ describe("Library tests", () => {
     const songContainer = document.createElement("section");
     songContainer.setAttribute("id", "song-container");
     document.body.appendChild(songContainer);
-
   };
 
   beforeEach(() => {
@@ -54,14 +53,14 @@ describe("Library tests", () => {
 
   it("generateLists should call buildPlaylistItem and buildSongItem, and append children to containers", () => {
     // TODO  DONE
-    
+
     const buildPlaylistItemSpy = jest.spyOn(library, "buildPlaylistItem").mockImplementation(() => {
       return document.createElement("a");
     });
     const buildSongItemSpy = jest.spyOn(library, "buildSongItem").mockImplementation(() => {
       return document.createElement("div");
     });
-    
+
     library.load();
 
     const playlistContainer = document.getElementById("playlist-container");
@@ -71,10 +70,6 @@ describe("Library tests", () => {
     expect(buildSongItemSpy).toBeCalled();
     expect(playlistContainer.hasChildNodes()).toEqual(true);
     expect(songContainer.hasChildNodes()).toEqual(true);
-
-
-    
-
   });
 
   it("buildPlaylistItem should build playlist's item", () => {
@@ -99,7 +94,6 @@ describe("Library tests", () => {
     expect(songItem.innerHTML).toEqual(
       `<p>${song.name}</p><p>${song.genre}</p><p>${song.artist}</p><button class="fa-heart fa-2x fa-regular"></button>`
     )
-
   });
 
   it("buildSongItem should add a call to StorageManager.replaceItem on click event and change the classList", () => {
@@ -116,10 +110,6 @@ describe("Library tests", () => {
 
     expect(replaceItemSpy).toBeCalled();
     expect(likedButton1.classList.contains("fa-regular")).toBeFalsy();
-
-
-    
-
   });
 
   it("load should load window", () => {

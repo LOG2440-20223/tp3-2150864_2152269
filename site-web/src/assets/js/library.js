@@ -118,9 +118,8 @@ export class Library {
    * @returns {boolean} true si au moins 1 élément dans 'searchFields' contient 'searchValue', false sinon
    */
   searchInFields (searchFields, searchValue, exactMatch) {
-
-    return searchFields.some((string) => 
-    this.includesSubstring(string, searchValue, exactMatch));
+    return searchFields.some((string) =>
+      this.includesSubstring(string, searchValue, exactMatch));
   }
 
   /**
@@ -133,18 +132,16 @@ export class Library {
    * @param {boolean} exactMatch indique s'il faut tenir compte des minuscules et majuscules
    */
   search (searchInput, searchSources, exactMatch) {
-
-
     const playlistsToLoad = searchSources.playlists.filter((playlist) => {
       const playlistSearchingArray = [playlist.name, playlist.description];
-        return this.searchInFields(playlistSearchingArray, searchInput.value, exactMatch);
-      }
-     )
+      return this.searchInFields(playlistSearchingArray, searchInput.value, exactMatch);
+    }
+    )
 
-     const songsToUpload = searchSources.songs.filter((song) => {
+    const songsToUpload = searchSources.songs.filter((song) => {
       const songSearchingArray = [song.name, song.artist, song.genre];
-        return this.searchInFields(songSearchingArray, searchInput.value, exactMatch);
-    } )
+      return this.searchInFields(songSearchingArray, searchInput.value, exactMatch);
+    })
 
     this.generateLists(playlistsToLoad, songsToUpload);
   }
@@ -152,5 +149,4 @@ export class Library {
 
 window.onload = () => {
   new Library(new StorageManager()).load();
-
 };

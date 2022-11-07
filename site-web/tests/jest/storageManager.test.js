@@ -68,7 +68,6 @@ describe("StorageManager tests", () => {
 
   it("getData should get localStorage's data given a valid storageKey", () => {
     const defaultKey = "key";
-    const localStorageGetItemSpy = jest.spyOn(localStorage.__proto__, 'getItem');
     localStorage.setItem(defaultKey, JSON.stringify(defaultKey));
     // TODO compléter le teste avec cette configuration DONE
     expect(storageManager.getData(defaultKey)).toBeTruthy();
@@ -86,7 +85,7 @@ describe("StorageManager tests", () => {
   it("getItemById should find item with specific id", () => {
     // TODO DONE
     const defaultKey = "key";
-    const dataTest = {id: 0, name : "test"};
+    const dataTest = { id: 0, name: "test" };
     jest.spyOn(storageManager, "getData").mockImplementation(() => [dataTest]);
     expect(storageManager.getItemById(defaultKey, 0)).toEqual(dataTest);
     expect(storageManager.getItemById(defaultKey, 1)).toEqual(undefined);
@@ -107,8 +106,8 @@ describe("StorageManager tests", () => {
   it("replaceItem should correctly replace an item in localStorage with id checks", () => {
     // TODO DONE
     const defaultKey = "key";
-    const item = {id: 0, name: "item"};
-    const newItem = {id: 0, name: "New item"};
+    const item = { id: 0, name: "item" };
+    const newItem = { id: 0, name: "New item" };
     localStorage.setItem(defaultKey, JSON.stringify([item]));
     expect(JSON.parse(localStorage.getItem(defaultKey))).toEqual([item]);
     expect(storageManager.getItemById(defaultKey, 0)).toEqual(item);
