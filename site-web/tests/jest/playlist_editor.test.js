@@ -37,7 +37,6 @@ describe("Playlist Editor tests", () => {
     imageInput.setAttribute("id", "image");
     document.body.appendChild(imageInput);
 
-    
     const dataList = document.createElement("datalist");
     dataList.setAttribute("id", "song-dataList");
     document.body.appendChild(dataList);
