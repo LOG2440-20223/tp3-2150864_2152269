@@ -40,12 +40,15 @@ Les fichiers des chansons initiales sont disponibles dans le répertoire `assets
 
 | **Exigences**                                     | **Note** | **Points** |
 | ------------------------------------------------- | :------: | :--------: |
-| Recherche dans la bibliothèque                    |    0     |     3      |
-| Tests dans _library.test.js_                      |    0     |     2      |
-| Tests dans _player.test.js_                       |    0     |     3      |
-| Tests dans _playlist\_editor.test.js_             |    0     |     3      |
-| Tests dans _playlist.test.js_                     |    0     |     4      |
-| Tests dans _storageManager.test.js_               |    0     |     2      |
-| Structure du code                                 |    0     |     1      |
-| Qualité et clarté du code                         |    0     |     2      |
-| **Total**                                         | **0**    |   **20**   |
+| Recherche dans la bibliothèque                    |    3     |     3      |
+| Tests dans _library.test.js_                      |    2     |     2      |
+| Tests dans _player.test.js_                       |    3     |     3      |
+| Tests dans _playlist\_editor.test.js_             |    3     |     3      |
+| Tests dans _playlist.test.js_                     |    4     |     4      |
+| Tests dans _storageManager.test.js_               |    2     |     2      |
+| Structure du code                                 |    1     |     1      |
+| Qualité et clarté du code                         |    2     |     2      |
+| **Total**                                         | **20**    |   **20**   |
+
+# Commentaires :
+- Excellent :-)
